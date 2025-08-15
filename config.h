@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "JetBrainsMono Nerd Font:size=13:antialias=true";
-static int borderpx = 20;
+static int borderpx = 10;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -94,7 +94,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 4;
 
 /* bg opacity */
-float alpha = 1.0;
+float alpha = 0.8;
 
 typedef struct {
   const char *const colors[258]; /* terminal colors */
