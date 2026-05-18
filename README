@@ -1,34 +1,43 @@
-st - simple terminal
---------------------
-st is a simple terminal emulator for X which sucks less.
+DoomTerm
+---------------------
+DoomTerm is a small X terminal based on st.
+
+Local features:
+
+* mouse reporting for terminal programs that request it
+* scrollback with Shift+MouseWheel and Shift+PageUp/PageDown
+* clipboard copy/paste shortcuts
+* alpha transparency
+* runtime color scheme switching
+* common zoom shortcuts: Ctrl++, Ctrl+-, Ctrl+0
+* external image overlay compatibility for w3m/ueberzug-style drawers
 
 
 Requirements
 ------------
-In order to build st you need the Xlib header files.
+In order to build doomterm you need the Xlib header files.
 
 
 Installation
 ------------
-Edit config.mk to match your local setup (st is installed into
+Edit config.mk to match your local setup (doomterm is installed into
 the /usr/local namespace by default).
 
-Afterwards enter the following command to build and install st (if
+Afterwards enter the following command to build and install doomterm (if
 necessary as root):
 
     make clean install
 
 
-Running st
-----------
-If you did not install st with make clean install, you must compile
-the st terminfo entry with the following command:
+Running doomterm
+----------------
+If you did not install doomterm with make clean install, you must compile
+the doomterm terminfo entry with the following command:
 
-    tic -sx st.info
+    tic -sx doomterm.info
 
 See the man page for additional details.
 
 Credits
 -------
 Based on Aurélien APTEL <aurelien dot aptel at gmail dot com> bt source code.
-

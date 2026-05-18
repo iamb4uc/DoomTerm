@@ -5,11 +5,11 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMono Nerd Font:size=13:antialias=true";
-static int borderpx = 10;
+static char *font = "DepartureMono Nerd Font:size=10:antialias=true";
+static int borderpx = 12;
 
 /*
- * What program is execed by st depends of these precedence rules:
+ * What program is execed by doomterm depends of these precedence rules:
  * 1: program passed with -e
  * 2: scroll and/or utmp
  * 3: SHELL environment variable
@@ -49,7 +49,7 @@ int allowwindowops = 0;
 
 /*
  * draw latency range in ms - from new content/keypress/etc until drawing.
- * within this range, st draws when content stops arriving (idle). mostly it's
+ * within this range, doomterm draws when content stops arriving (idle). mostly it's
  * near minlatency, but it waits longer for slow updates to avoid partial draw.
  * low minlatency will tear/flicker more, as it can "detect" idle too early.
  */
@@ -74,14 +74,14 @@ static unsigned int cursorthickness = 2;
 static int bellvolume = 0;
 
 /* default TERM value */
-char *termname = "st-256color";
+char *termname = "doomterm-256color";
 
 /*
  * spaces per tab
  *
  * When you are changing this value, don't forget to adapt the »it« value in
- * the st.info and appropriately install the st.info in the environment where
- * you use this st version.
+ * the doomterm.info and appropriately install the doomterm.info in the
+ * environment where you use this DoomTerm version.
  *
  *	it#$tabspaces,
  *
@@ -109,7 +109,7 @@ typedef struct {
  * foreground, background, cursor, reverse cursor
  */
 static const ColorScheme schemes[] = {
-    // st (dark)
+    // DoomTerm dark
     {{"black", "red3", "green3", "yellow3", "blue2", "magenta3", "cyan3",
       "gray90", "gray50", "red", "green", "yellow", "#5c5cff", "magenta",
       "cyan", "white", [256] = "#cccccc", "#555555"},
@@ -264,10 +264,8 @@ static MouseShortcut mshortcuts[] = {
     {ShiftMask, Button4, kscrollup, {.i = 1}},
     {ShiftMask, Button5, kscrolldown, {.i = 1}},
     {XK_ANY_MOD, Button2, selpaste, {.i = 0}, 1},
-    {ShiftMask, Button4, ttysend, {.s = "\033[5;2~"}},
-    {XK_ANY_MOD, Button4, ttysend, {.s = "\031"}},
-    {ShiftMask, Button5, ttysend, {.s = "\033[6;2~"}},
-    {XK_ANY_MOD, Button5, ttysend, {.s = "\005"}},
+    {XK_ANY_MOD, Button4, kscrollup, {.i = 1}},
+    {XK_ANY_MOD, Button5, kscrolldown, {.i = 1}},
 };
 
 /* Internal keyboard shortcuts. */
@@ -280,6 +278,13 @@ static Shortcut shortcuts[] = {
     {ControlMask, XK_Print, toggleprinter, {.i = 0}},
     {ShiftMask, XK_Print, printscreen, {.i = 0}},
     {XK_ANY_MOD, XK_Print, printsel, {.i = 0}},
+    {ControlMask | ShiftMask, XK_plus, zoom, {.f = +1}},
+    {ControlMask, XK_equal, zoom, {.f = +1}},
+    {ControlMask, XK_KP_Add, zoom, {.f = +1}},
+    {ControlMask, XK_minus, zoom, {.f = -1}},
+    {ControlMask, XK_KP_Subtract, zoom, {.f = -1}},
+    {ControlMask, XK_0, zoomreset, {.f = 0}},
+    {ControlMask, XK_KP_0, zoomreset, {.f = 0}},
     {TERMMOD, XK_Prior, zoom, {.f = +1}},
     {TERMMOD, XK_Next, zoom, {.f = -1}},
     {TERMMOD, XK_Home, zoomreset, {.f = 0}},
@@ -304,7 +309,7 @@ static Shortcut shortcuts[] = {
 };
 
 /*
- * Special keys (change & recompile st.info accordingly)
+ * Special keys (change & recompile doomterm.info accordingly)
  *
  * Mask value:
  * * Use XK_ANY_MOD to match the key no matter modifiers state
@@ -319,7 +324,7 @@ static Shortcut shortcuts[] = {
  * * > 0: cursor application mode enabled
  * * < 0: cursor application mode disabled
  *
- * Be careful with the order of the definitions because st searches in
+ * Be careful with the order of the definitions because doomterm searches in
  * this table sequentially, so any XK_ANY_MOD must be in the last
  * position for a key.
  */

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Exec=doomterm
+TryExec=doomterm
+Icon=utilities-terminal
+Terminal=false
+Categories=System;TerminalEmulator;
+
+Name=DoomTerm
+GenericName=Terminal
+Comment=DoomTerm is a simple terminal implementation for X
+StartupWMClass=doomterm-256color

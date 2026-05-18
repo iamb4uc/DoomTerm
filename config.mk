@@ -1,4 +1,4 @@
-# st version
+# doomterm version
 VERSION = 0.8.5
 
 # Customize below to fit your system
