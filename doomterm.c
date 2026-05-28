@@ -1838,8 +1838,10 @@ csihandle(void)
 	case 'm': /* SGR -- Terminal attribute (color) */
 		tsetattr(csiescseq.arg, csiescseq.narg);
 		break;
-	case 'n': /* DSR – Device Status Report (cursor position) */
-		if (csiescseq.arg[0] == 6) {
+	case 'n': /* DSR -- Device Status Report */
+		if (csiescseq.arg[0] == 5) {
+			ttywrite("\033[0n", 4, 0);
+		} else if (csiescseq.arg[0] == 6) {
 			len = snprintf(buf, sizeof(buf), "\033[%i;%iR",
 					term.c.y+1, term.c.x+1);
 			ttywrite(buf, len, 0);
